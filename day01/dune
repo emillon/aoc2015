@@ -1,0 +1,33 @@
+(library
+ (name day01)
+ (modules day01 input)
+ (public_name aoc2015.day01)
+ (libraries cmdliner)
+ (preprocess
+  (pps ppx_jane))
+ (inline_tests))
+
+(executable
+ (name run)
+ (modules run)
+ (libraries day01))
+
+(rule
+ (action
+  (write-file run.ml "let () = Day01.run ()")))
+
+(rule
+ (mode promote)
+ (action
+  (with-stdout-to
+   p1.txt
+   (run ./run.exe --part 1))))
+
+(rule
+ (mode promote)
+ (action
+  (with-stdout-to
+   p2.txt
+   (run ./run.exe --part 2))))
+
+(alias (name runtest) (deps p1.txt p2.txt))
