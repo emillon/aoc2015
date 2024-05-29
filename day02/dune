@@ -1,7 +1,7 @@
 (library
- (name day01)
- (modules day01 input)
- (public_name aoc2015.day01)
+ (name day02)
+ (modules day02 input)
+ (public_name aoc2015.day02)
  (libraries lib)
  (preprocess
   (pps ppx_jane))
@@ -10,11 +10,11 @@
 (executable
  (name run)
  (modules run)
- (libraries day01))
+ (libraries day02))
 
 (rule
  (action
-  (write-file run.ml "let () = Day01.run ()")))
+  (write-file run.ml "let () = Day02.run ()")))
 
 (rule
  (action

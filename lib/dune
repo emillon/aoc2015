@@ -1,0 +1,4 @@
+(library
+ (public_name aoc2015.lib)
+ (name lib)
+ (libraries cmdliner stdio))

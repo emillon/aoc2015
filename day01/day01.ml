@@ -44,25 +44,4 @@ let%expect_test "f2" =
   test "()())";
   [%expect {| 5 |}]
 
-let run_p1 () = printf "%d\n" (f1 Input.data)
-let run_p2 () = printf "%d\n" (f2 Input.data)
-
-type part = One | Two
-
-let run_part p =
-  let r = match p with One -> f1 Input.data | Two -> f2 Input.data in
-  printf "%d\n" r
-
-let info = Cmdliner.Cmd.info "day01"
-
-let term =
-  let part =
-    let open Cmdliner.Arg in
-    required
-    & opt (some (enum [ ("1", One); ("2", Two) ])) None
-    & info [ "part" ]
-  in
-  Cmdliner.Term.(const run_part $ part)
-
-let cmd = Cmdliner.Cmd.v info term
-let run () = Cmdliner.Cmd.eval cmd |> Stdlib.exit
+let run () = Lib.run ~name:"day01" ~f1 ~f2 Input.data
