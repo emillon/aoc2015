@@ -1,4 +1,6 @@
 (library
  (public_name aoc2015.lib)
  (name lib)
- (libraries cmdliner stdio))
+ (libraries cmdliner base stdio)
+ (preprocess
+  (pps ppx_jane)))
