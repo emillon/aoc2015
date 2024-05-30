@@ -1,6 +1,6 @@
 (library
- (name day)
- (modules day)
+ (name day04)
+ (modules day04)
  (public_name aoc2015.day04)
  (libraries lib digestif)
  (preprocess
@@ -10,11 +10,11 @@
 (executable
  (name run)
  (modules run)
- (libraries day))
+ (libraries day04))
 
 (rule
  (action
-  (write-file run.ml "let () = Day.run ()")))
+  (write-file run.ml "let () = Day04.run ()")))
 
 (rule
  (action
