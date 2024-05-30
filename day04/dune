@@ -2,7 +2,7 @@
  (name day)
  (modules day)
  (public_name aoc2015.day04)
- (libraries lib hex_encode)
+ (libraries lib digestif)
  (preprocess
   (pps ppx_jane))
  (inline_tests))
