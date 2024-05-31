@@ -25,3 +25,5 @@ end
 
 val number : int Angstrom.t
 val sum : int list -> int
+val permutations : 'a list -> 'a list list
+val legs : 'a list -> ('a * 'a) list

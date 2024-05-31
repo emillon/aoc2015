@@ -72,4 +72,4 @@ let%expect_test "encode" =
   [%expect {| ((code 11) (memory 6)) |}]
 
 let f2 = global_diff ~f:after_encoding
-let run () = Lib.run ~name:"day07" ~f1 ~f2 Input.data
+let run () = Lib.run ~name:"day08" ~f1 ~f2 Input.data

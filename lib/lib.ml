@@ -56,3 +56,24 @@ let number =
   Int.of_string s
 
 let sum = List.fold ~init:0 ~f:( + )
+
+let rec insert x l =
+  match l with
+  | [] -> [ [ x ] ]
+  | h :: t -> (x :: l) :: List.map ~f:(fun l -> h :: l) (insert x t)
+
+let rec permutations = function
+  | [] -> [ [] ]
+  | x :: xs -> List.concat_map ~f:(insert x) (permutations xs)
+
+let%expect_test "permutations" =
+  permutations [ 1; 2; 3; 4 ] |> [%sexp_of: int list list] |> print_s;
+  [%expect
+    {|
+    ((1 2 3 4) (2 1 3 4) (2 3 1 4) (2 3 4 1) (1 3 2 4) (3 1 2 4) (3 2 1 4)
+     (3 2 4 1) (1 3 4 2) (3 1 4 2) (3 4 1 2) (3 4 2 1) (1 2 4 3) (2 1 4 3)
+     (2 4 1 3) (2 4 3 1) (1 4 2 3) (4 1 2 3) (4 2 1 3) (4 2 3 1) (1 4 3 2)
+     (4 1 3 2) (4 3 1 2) (4 3 2 1)) |}]
+
+let rec legs_after x = function a :: l -> (x, a) :: legs_after a l | [] -> []
+let legs = function [] -> assert false | x :: xs -> legs_after x xs
