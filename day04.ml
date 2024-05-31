@@ -43,6 +43,12 @@ let%expect_test "f1" =
   test "pqrstuv";
   [%expect {| 1048970 |}]
 
-let f2 s = f_gen s 6
 let input_data = "iwrupvqb"
-let run () = Run.run ~name:"day03" ~f1 ~f2 input_data
+
+let%expect_test "part 1" =
+  f1 input_data |> printf "%d";
+  [%expect {| 346386 |}]
+
+let%expect_test "part 2" =
+  f_gen input_data 6 |> printf "%d";
+  [%expect {| 9958218 |}]

@@ -16,6 +16,12 @@ let rec json_sum ~ignore_red = function
   | `Tuple _ -> assert false
   | `Variant _ -> assert false
 
-let f1 s = Yojson.Safe.from_string s |> json_sum ~ignore_red:false
-let f2 s = Yojson.Safe.from_string s |> json_sum ~ignore_red:true
-let run () = Run.run ~name:"day12" ~f1 ~f2 Day12_input.data
+let%expect_test "part 1" =
+  Yojson.Safe.from_string Day12_input.data
+  |> json_sum ~ignore_red:false |> printf "%d";
+  [%expect {| 191164 |}]
+
+let%expect_test "part 2" =
+  Yojson.Safe.from_string Day12_input.data
+  |> json_sum ~ignore_red:true |> printf "%d";
+  [%expect {| 87842 |}]

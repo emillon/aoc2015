@@ -132,12 +132,13 @@ let eval_full s =
   let env = eval dl in
   (dl, Map.find_exn env "a")
 
-let f1 s = snd (eval_full s)
+let%expect_test "part 1" =
+  snd (eval_full Day07_input.data) |> printf "%d";
+  [%expect {| 46065 |}]
 
-let f2 s =
-  let dl, a = eval_full s in
+let%expect_test "part 2" =
+  let dl, a = eval_full Day07_input.data in
   let dl2 = Map.set dl ~key:"b" ~data:(Int a) in
   let env2 = eval dl2 in
-  Map.find_exn env2 "a"
-
-let run () = Run.run ~name:"day07" ~f1 ~f2 Day07_input.data
+  Map.find_exn env2 "a" |> printf "%d";
+  [%expect {| 14134 |}]

@@ -17,6 +17,10 @@ let%expect_test "f1" =
   test "^v^v^v^v^v";
   [%expect {| 2 |}]
 
+let%expect_test "part 1" =
+  f1 Day03_input.data |> printf "%d";
+  [%expect {| 2081 |}]
+
 let f2 s =
   let s = String.strip s in
   let origin = (0, 0) in
@@ -48,4 +52,6 @@ let%expect_test "f2" =
   test "^v^v^v^v^v";
   [%expect {| 11 |}]
 
-let run () = Run.run ~name:"day03" ~f1 ~f2 Day03_input.data
+let%expect_test "part 2" =
+  f2 Day03_input.data |> printf "%d";
+  [%expect {| 2341 |}]

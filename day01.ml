@@ -28,6 +28,10 @@ let%expect_test "f1" =
   test ")())())";
   [%expect {| -3 |}]
 
+let%expect_test "part 1" =
+  f1 Day01_input.data |> printf "%d";
+  [%expect {| 74 |}]
+
 let f2 s =
   String.foldi s ~init:(Ok 0) ~f:(fun i state c ->
       let%bind.Result a = state in
@@ -41,4 +45,6 @@ let%expect_test "f2" =
   test "()())";
   [%expect {| 5 |}]
 
-let run () = Run.run ~name:"day01" ~f1 ~f2 Day01_input.data
+let%expect_test "part 2" =
+  f2 Day01_input.data |> printf "%d";
+  [%expect {| 1795 |}]

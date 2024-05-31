@@ -45,7 +45,9 @@ let%expect_test "size" =
 let global_diff s ~f =
   String.split_lines s |> List.map ~f:(fun s -> f s |> size_diff) |> sum
 
-let f1 = global_diff ~f:sizes
+let%expect_test "part 1" =
+  global_diff ~f:sizes Day08_input.data |> printf "%d";
+  [%expect {| 1371 |}]
 
 let encoded_char_size = function
   | '"' -> 2
@@ -69,5 +71,6 @@ let%expect_test "encode" =
   test {|"\x27"|};
   [%expect {| ((code 11) (memory 6)) |}]
 
-let f2 = global_diff ~f:after_encoding
-let run () = Run.run ~name:"day08" ~f1 ~f2 Day08_input.data
+let%expect_test "part 2" =
+  global_diff ~f:after_encoding Day08_input.data |> printf "%d";
+  [%expect {| 2117 |}]
