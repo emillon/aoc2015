@@ -1,6 +1,6 @@
 open Base
 open Stdio
-open Lib
+open Parsing_util
 
 type op = And | Or | Lshift | Rshift [@@deriving compare, equal, hash, sexp]
 
@@ -146,4 +146,4 @@ let f2 s =
   let env2 = eval dl2 in
   Map.find_exn env2 "a"
 
-let run () = Lib.run ~name:"day07" ~f1 ~f2 Day07_input.data
+let run () = Run.run ~name:"day07" ~f1 ~f2 Day07_input.data

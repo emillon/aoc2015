@@ -1,5 +1,5 @@
 open Base
-open Lib
+open Algo
 
 let has_red = List.exists ~f:(function _, `String "red" -> true | _ -> false)
 
@@ -19,4 +19,4 @@ let rec json_sum ~ignore_red = function
 
 let f1 s = Yojson.Safe.from_string s |> json_sum ~ignore_red:false
 let f2 s = Yojson.Safe.from_string s |> json_sum ~ignore_red:true
-let run () = Lib.run ~name:"day12" ~f1 ~f2 Day12_input.data
+let run () = Run.run ~name:"day12" ~f1 ~f2 Day12_input.data

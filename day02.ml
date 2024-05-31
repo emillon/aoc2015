@@ -1,6 +1,6 @@
 open Base
 open Stdio
-open Lib
+open Algo
 
 let parse s = Stdlib.Scanf.sscanf s "%dx%dx%d" (fun l w h -> (l, w, h))
 let smallest l = List.min_elt ~compare:Int.compare l |> Option.value_exn
@@ -34,4 +34,4 @@ let%expect_test "result2" =
 let f2 data =
   String.split_lines data |> List.map ~f:(fun s -> result2 (parse s)) |> sum
 
-let run () = Lib.run ~name:"day02" ~f1 ~f2 Day02_input.data
+let run () = Run.run ~name:"day02" ~f1 ~f2 Day02_input.data

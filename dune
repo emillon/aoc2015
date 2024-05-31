@@ -1,6 +1,6 @@
 (library
  (public_name aoc2015)
- (libraries aoc2015.lib digestif ocamlgraph str yojson)
+ (libraries angstrom cmdliner_let_syntax digestif ocamlgraph str yojson)
  (inline_tests)
  (preprocess
   (pps ppx_jane)))

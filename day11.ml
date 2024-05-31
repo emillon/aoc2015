@@ -1,6 +1,6 @@
 open Base
 open Stdio
-open Lib
+open Algo
 
 let is_increasing a b c =
   let na = Char.to_int a in
@@ -72,4 +72,4 @@ let f2 s =
   let p1 = next s in
   iter (fun s -> ok s && not (String.equal s p1)) p1
 
-let run () = Lib.run_string ~name:"day11" ~f1 ~f2 "vzbxkghb"
+let run () = Run.run_string ~name:"day11" ~f1 ~f2 "vzbxkghb"

@@ -1,6 +1,5 @@
 open Base
 open Stdio
-open Lib
 
 let f1 s =
   let s = String.strip s in
@@ -52,4 +51,4 @@ let%expect_test "f2" =
   test "^v^v^v^v^v";
   [%expect {| 11 |}]
 
-let run () = Lib.run ~name:"day03" ~f1 ~f2 Day03_input.data
+let run () = Run.run ~name:"day03" ~f1 ~f2 Day03_input.data

@@ -1,6 +1,6 @@
 open Base
 open Stdio
-open Lib
+open Algo
 
 let bytes_zeroes = function
   | '\x00' -> 2
@@ -47,4 +47,4 @@ let%expect_test "f1" =
 
 let f2 s = f_gen s 6
 let input_data = "iwrupvqb"
-let run () = Lib.run ~name:"day03" ~f1 ~f2 input_data
+let run () = Run.run ~name:"day03" ~f1 ~f2 input_data

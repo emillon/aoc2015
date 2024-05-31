@@ -1,5 +1,4 @@
 open Stdio
-open Lib
 
 let input_file =
   let open Cmdliner.Arg in

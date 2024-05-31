@@ -1,5 +1,6 @@
 open Base
-open Lib
+open Algo
+open Parsing_util
 
 let parse s =
   let city =
@@ -43,4 +44,4 @@ let best_by s ~f =
 
 let f1 s = best_by s ~f:(List.min_elt ~compare:Int.compare)
 let f2 s = best_by s ~f:(List.max_elt ~compare:Int.compare)
-let run () = Lib.run ~name:"day09" ~f1 ~f2 Day09_input.data
+let run () = Run.run ~name:"day09" ~f1 ~f2 Day09_input.data

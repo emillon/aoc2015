@@ -1,6 +1,6 @@
 open Base
 open Stdio
-open Lib
+open Parsing_util
 
 type op = Turn_on | Turn_off | Toggle [@@deriving sexp]
 type instruction = op * int * int [@@deriving sexp]
@@ -76,4 +76,4 @@ let f2 s =
   String.split_lines s |> List.map ~f:parse |> List.iter ~f:(interpret2 t);
   Hashtbl.fold t ~init:0 ~f:(fun ~key:_ ~data n -> data + n)
 
-let run () = Lib.run ~name:"day06" ~f1 ~f2 Day06_input.data
+let run () = Run.run ~name:"day06" ~f1 ~f2 Day06_input.data

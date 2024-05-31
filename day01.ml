@@ -44,4 +44,4 @@ let%expect_test "f2" =
   test "()())";
   [%expect {| 5 |}]
 
-let run () = Lib.run ~name:"day01" ~f1 ~f2 Day01_input.data
+let run () = Run.run ~name:"day01" ~f1 ~f2 Day01_input.data

@@ -1,6 +1,6 @@
 open Base
 open Stdio
-open Lib
+open Algo
 
 type sizes = { code : int; memory : int } [@@deriving sexp]
 
@@ -72,4 +72,4 @@ let%expect_test "encode" =
   [%expect {| ((code 11) (memory 6)) |}]
 
 let f2 = global_diff ~f:after_encoding
-let run () = Lib.run ~name:"day08" ~f1 ~f2 Day08_input.data
+let run () = Run.run ~name:"day08" ~f1 ~f2 Day08_input.data

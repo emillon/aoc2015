@@ -63,4 +63,4 @@ let%expect_test "is_nice2" =
 
 let f1 s = String.split_lines s |> List.count ~f:is_nice
 let f2 s = String.split_lines s |> List.count ~f:is_nice2
-let run () = Lib.run ~name:"day05" ~f1 ~f2 Day05_input.data
+let run () = Run.run ~name:"day05" ~f1 ~f2 Day05_input.data

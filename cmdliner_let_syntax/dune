@@ -1,0 +1,4 @@
+(library
+ (name cmdliner_let_syntax)
+ (public_name aoc2015.cmdliner_let_syntax)
+ (libraries cmdliner))

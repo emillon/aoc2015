@@ -23,4 +23,4 @@ let f_gen n s =
 
 let f1 = f_gen 40
 let f2 = f_gen 50
-let run () = Lib.run ~name:"day10" ~f1 ~f2 "3113322113"
+let run () = Run.run ~name:"day10" ~f1 ~f2 "3113322113"
