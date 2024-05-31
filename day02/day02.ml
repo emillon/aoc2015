@@ -1,7 +1,7 @@
 open Base
 open Stdio
+open Lib
 
-let sum = List.fold ~init:0 ~f:( + )
 let parse s = Stdlib.Scanf.sscanf s "%dx%dx%d" (fun l w h -> (l, w, h))
 let smallest l = List.min_elt ~compare:Int.compare l |> Option.value_exn
 

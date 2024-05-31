@@ -24,3 +24,4 @@ module Pos : sig
 end
 
 val number : int Angstrom.t
+val sum : int list -> int
