@@ -1,5 +1,3 @@
-open Base
-open Stdio
 open Algo
 
 let parse s = Stdlib.Scanf.sscanf s "%dx%dx%d" (fun l w h -> (l, w, h))

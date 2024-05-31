@@ -1,5 +1,3 @@
-open Base
-open Stdio
 open Algo
 
 type sizes = { code : int; memory : int } [@@deriving sexp]

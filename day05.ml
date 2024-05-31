@@ -1,6 +1,3 @@
-open Base
-open Stdio
-
 let is_vowel = function 'a' | 'e' | 'i' | 'o' | 'u' -> true | _ -> false
 
 let has_repeated_letter s =

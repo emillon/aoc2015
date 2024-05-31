@@ -1,5 +1,3 @@
-open Base
-open Stdio
 open Parsing_util
 
 type op = And | Or | Lshift | Rshift [@@deriving compare, equal, hash, sexp]

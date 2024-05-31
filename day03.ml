@@ -1,6 +1,3 @@
-open Base
-open Stdio
-
 let f1 s =
   let s = String.strip s in
   let origin = (0, 0) in

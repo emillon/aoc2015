@@ -1,6 +1,3 @@
-open Base
-open Stdio
-
 let sum = List.fold ~init:0 ~f:( + )
 
 let rec insert x l =

@@ -1,4 +1,3 @@
-open Base
 open Algo
 
 let has_red = List.exists ~f:(function _, `String "red" -> true | _ -> false)

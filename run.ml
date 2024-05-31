@@ -1,5 +1,3 @@
-open Stdio
-
 let run_gen ~name ~f1 ~f2 data ~print =
   let info = Cmdliner.Cmd.info name in
   let term =

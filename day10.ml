@@ -1,5 +1,3 @@
-open Base
-
 let char_to_int c = Char.to_int c - Char.to_int '0'
 
 let look_and_say l =

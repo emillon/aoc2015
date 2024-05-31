@@ -1,5 +1,3 @@
-open Base
-
 module T = struct
   type t = int * int [@@deriving compare, hash, sexp]
 end

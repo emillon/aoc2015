@@ -1,5 +1,3 @@
-open Base
-open Stdio
 open Parsing_util
 
 type op = Turn_on | Turn_off | Toggle [@@deriving sexp]

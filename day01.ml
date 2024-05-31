@@ -1,6 +1,3 @@
-open Base
-open Stdio
-
 let f a c =
   match c with
   | '(' -> a + 1

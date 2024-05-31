@@ -1,5 +1,3 @@
-open Base
-
 module type Input = sig
   type t [@@deriving sexp_of]
 end

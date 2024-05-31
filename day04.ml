@@ -1,5 +1,3 @@
-open Base
-open Stdio
 open Algo
 
 let bytes_zeroes = function

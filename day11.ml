@@ -1,5 +1,3 @@
-open Base
-open Stdio
 open Algo
 
 let is_increasing a b c =

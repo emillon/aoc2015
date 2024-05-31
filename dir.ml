@@ -1,5 +1,3 @@
-open Base
-
 type t = N | S | E | W
 
 let of_char = function
