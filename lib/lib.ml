@@ -7,7 +7,7 @@ module Cmdliner_let_syntax = struct
   let ( let+ ) x k = const k $ x
 end
 
-let run ~name ~f1 ~f2 data =
+let run_gen ~name ~f1 ~f2 data ~print =
   let info = Cmdliner.Cmd.info name in
   let term =
     let open Cmdliner_let_syntax in
@@ -18,10 +18,15 @@ let run ~name ~f1 ~f2 data =
       & info [ "part" ]
     in
     let f = match part with `One -> f1 | `Two -> f2 in
-    printf "%d\n" (f data)
+    print (f data)
   in
   let cmd = Cmdliner.Cmd.v info term in
   Cmdliner.Cmd.eval cmd |> Stdlib.exit
+
+let run ~name ~f1 ~f2 data = run_gen ~name ~f1 ~f2 data ~print:(printf "%d\n")
+
+let run_string ~name ~f1 ~f2 data =
+  run_gen ~name ~f1 ~f2 data ~print:(printf "%s\n")
 
 module Dir = struct
   type t = N | S | E | W
@@ -96,3 +101,48 @@ let science (type input output) ?(bypass = false) ~control ~experiment
     if not (Output.equal control exp) then
       raise_s [%message (x : Input.t) (control : Output.t) (exp : Output.t)];
     control
+
+exception Overflow
+
+let char_succ_exn c = Char.to_int c |> Int.succ |> Char.of_int_exn
+
+let rec incr_buf_at_point ~min ~max b i =
+  if i < 0 then raise Overflow;
+  let c = Bytes.get b i in
+  if Char.equal c max then (
+    Bytes.set b i min;
+    incr_buf_at_point ~min ~max b (i - 1))
+  else Bytes.set b i (char_succ_exn c)
+
+let incr_buf ~min ~max b = incr_buf_at_point ~min ~max b (Bytes.length b - 1)
+
+let resize_b ~min b =
+  let r = Bytes.make (Bytes.length b + 1) min in
+  Bytes.set r 0 (char_succ_exn min);
+  r
+
+let iter_bytes ~f ~start ~min ~max =
+  let rec go b =
+    if f b then Bytes.to_string b
+    else
+      match incr_buf ~min ~max b with
+      | () -> go b
+      | exception Overflow -> go (resize_b ~min b)
+  in
+  go (Bytes.of_string start)
+
+let%expect_test "iter_bytes" =
+  iter_bytes
+    ~f:(fun b ->
+      let s = Bytes.unsafe_to_string ~no_mutation_while_string_reachable:b in
+      printf "%s\n" s;
+      Int.of_string s >= 12)
+    ~start:"8" ~min:'0' ~max:'9'
+  |> printf "result: %s";
+  [%expect {|
+    8
+    9
+    10
+    11
+    12
+    result: 12 |}]
