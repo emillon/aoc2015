@@ -2,14 +2,10 @@ open Algo
 open Parsing_util
 
 let parse s =
-  let city =
-    let open Angstrom in
-    take_while1 Char.is_alpha
-  in
   let line =
     let open Angstrom in
-    let+ src = city <* string " to "
-    and+ dst = city <* string " = "
+    let+ src = word <* string " to "
+    and+ dst = word <* string " = "
     and+ w = number in
     (src, dst, w)
   in

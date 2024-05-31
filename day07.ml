@@ -18,10 +18,6 @@ let rec vars_in = function
   | Not e -> vars_in e
 
 let parse_line s =
-  let var =
-    let open Angstrom in
-    take_while1 Char.is_alpha
-  in
   let op =
     let open Angstrom in
     choice
@@ -38,7 +34,7 @@ let parse_line s =
       [
         (let+ n = number in
          Int n);
-        (let+ s = var in
+        (let+ s = word in
          Var s);
       ]
   in
@@ -55,7 +51,7 @@ let parse_line s =
   in
   let definition =
     let open Angstrom in
-    let+ exp = exp <* string " -> " and+ var = var in
+    let+ exp = exp <* string " -> " and+ var = word in
     (var, exp)
   in
   match Angstrom.parse_string ~consume:All definition s with
