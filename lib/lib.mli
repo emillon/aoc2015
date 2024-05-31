@@ -27,3 +27,20 @@ val number : int Angstrom.t
 val sum : int list -> int
 val permutations : 'a list -> 'a list list
 val legs : 'a list -> ('a * 'a) list
+
+module type Science_input = sig
+  type t [@@deriving sexp_of]
+end
+
+module type Science_output = sig
+  type t [@@deriving equal, sexp_of]
+end
+
+val science :
+  ?bypass:bool ->
+  control:('a -> 'b) ->
+  experiment:('a -> 'b) ->
+  (module Science_input with type t = 'a) ->
+  (module Science_output with type t = 'b) ->
+  'a ->
+  'b

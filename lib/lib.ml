@@ -77,3 +77,22 @@ let%expect_test "permutations" =
 
 let rec legs_after x = function a :: l -> (x, a) :: legs_after a l | [] -> []
 let legs = function [] -> assert false | x :: xs -> legs_after x xs
+
+module type Science_input = sig
+  type t [@@deriving sexp_of]
+end
+
+module type Science_output = sig
+  type t [@@deriving equal, sexp_of]
+end
+
+let science (type input output) ?(bypass = false) ~control ~experiment
+    (module Input : Science_input with type t = input)
+    (module Output : Science_output with type t = output) x =
+  let control = control x in
+  if bypass then control
+  else
+    let exp = experiment x in
+    if not (Output.equal control exp) then
+      raise_s [%message (x : Input.t) (control : Output.t) (exp : Output.t)];
+    control
