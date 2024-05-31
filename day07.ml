@@ -146,4 +146,4 @@ let f2 s =
   let env2 = eval dl2 in
   Map.find_exn env2 "a"
 
-let run () = Lib.run ~name:"day07" ~f1 ~f2 Input.data
+let run () = Lib.run ~name:"day07" ~f1 ~f2 Day07_input.data

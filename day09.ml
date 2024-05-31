@@ -43,4 +43,4 @@ let best_by s ~f =
 
 let f1 s = best_by s ~f:(List.min_elt ~compare:Int.compare)
 let f2 s = best_by s ~f:(List.max_elt ~compare:Int.compare)
-let run () = Lib.run ~name:"day09" ~f1 ~f2 Input.data
+let run () = Lib.run ~name:"day09" ~f1 ~f2 Day09_input.data

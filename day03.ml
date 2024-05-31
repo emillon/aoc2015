@@ -52,4 +52,4 @@ let%expect_test "f2" =
   test "^v^v^v^v^v";
   [%expect {| 11 |}]
 
-let run () = Lib.run ~name:"day03" ~f1 ~f2 Input.data
+let run () = Lib.run ~name:"day03" ~f1 ~f2 Day03_input.data
