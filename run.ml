@@ -1,7 +1,7 @@
 let run_gen ~name ~f1 ~f2 data ~print =
   let info = Cmdliner.Cmd.info name in
   let term =
-    let open Cmdliner_let_syntax in
+    let open Cmdliner.Term.Syntax in
     let+ part =
       let open Cmdliner.Arg in
       required
