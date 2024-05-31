@@ -12,7 +12,7 @@
           pname = "aoc2015";
           version = "n/a";
           src = ./.;
-          buildInputs = with pkgs.ocamlPackages; [ angstrom cmdliner digestif hex_encode ppx_jane ];
+          buildInputs = with pkgs.ocamlPackages; [ angstrom cmdliner digestif hex_encode ocamlgraph ppx_jane ];
         };
         devShells.default = pkgs.mkShell {
           inputsFrom = [ self.packages.${system}.default ];

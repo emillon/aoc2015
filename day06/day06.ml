@@ -1,5 +1,6 @@
 open Base
 open Stdio
+open Lib
 
 type op = Turn_on | Turn_off | Toggle [@@deriving sexp]
 type instruction = op * int * int [@@deriving sexp]
@@ -7,11 +8,6 @@ type instruction = op * int * int [@@deriving sexp]
 let key x y = (x * 1000) + y
 
 let parse s =
-  let number =
-    let open Angstrom in
-    let+ s = take_while1 Char.is_digit in
-    Int.of_string s
-  in
   let position =
     let open Angstrom in
     let+ x = number <* string "," and+ y = number in

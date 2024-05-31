@@ -1,6 +1,6 @@
 (library
  (public_name aoc2015.lib)
  (name lib)
- (libraries cmdliner base stdio)
+ (libraries angstrom cmdliner base stdio)
  (preprocess
   (pps ppx_jane)))

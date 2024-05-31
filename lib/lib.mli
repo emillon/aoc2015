@@ -22,3 +22,5 @@ module Pos : sig
 
   val shift : t -> Dir.t -> t
 end
+
+val number : int Angstrom.t
