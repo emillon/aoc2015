@@ -17,7 +17,7 @@ let rec vars_in = function
   | Op (_, a, b) -> vars_in a @ vars_in b
   | Not e -> vars_in e
 
-let parse_line s =
+let parse_line =
   let op =
     let open Angstrom in
     choice
@@ -49,14 +49,11 @@ let parse_line s =
         atom;
       ]
   in
-  let definition =
-    let open Angstrom in
-    let+ exp = exp <* string " -> " and+ var = word in
-    (var, exp)
-  in
-  match Angstrom.parse_string ~consume:All definition s with
-  | Ok x -> x
-  | Error e -> Printf.ksprintf failwith "While parsing %S: %s" s e
+  parse_using
+  @@
+  let open Angstrom in
+  let+ exp = exp <* string " -> " and+ var = word in
+  (var, exp)
 
 let parse l = List.map l ~f:parse_line |> Map.of_alist_exn (module String)
 

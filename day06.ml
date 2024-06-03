@@ -5,7 +5,7 @@ type instruction = op * int * int [@@deriving sexp]
 
 let key x y = (x * 1000) + y
 
-let parse s =
+let parse =
   let position =
     let open Angstrom in
     let+ x = number <* string "," and+ y = number in
@@ -17,14 +17,13 @@ let parse s =
     <|> string "turn off" *> return Turn_off
     <|> string "toggle" *> return Toggle
   in
-  let instruction =
-    let open Angstrom in
-    let+ op = op <* string " "
-    and+ a = position <* string " through "
-    and+ b = position in
-    (op, a, b)
-  in
-  Angstrom.parse_string ~consume:All instruction s |> Result.ok_or_failwith
+  parse_using
+  @@
+  let open Angstrom in
+  let+ op = op <* string " "
+  and+ a = position <* string " through "
+  and+ b = position in
+  (op, a, b)
 
 let%expect_test "parse" =
   let test s = parse s |> [%sexp_of: instruction] |> print_s in

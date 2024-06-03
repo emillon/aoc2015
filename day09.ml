@@ -1,15 +1,14 @@
 open Algo
 open Parsing_util
 
-let parse s =
-  let line =
-    let open Angstrom in
-    let+ src = word <* string " to "
-    and+ dst = word <* string " = "
-    and+ w = number in
-    (src, dst, w)
-  in
-  Angstrom.parse_string ~consume:All line s |> Result.ok_or_failwith
+let parse =
+  parse_using
+  @@
+  let open Angstrom in
+  let+ src = word <* string " to "
+  and+ dst = word <* string " = "
+  and+ w = number in
+  (src, dst, w)
 
 module Key = struct
   module T = struct

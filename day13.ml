@@ -10,20 +10,19 @@ module Key = struct
   include Comparable.Make (T)
 end
 
-let parse_line s =
+let parse_line =
   let sign =
     let open Angstrom in
     choice [ string "gain" *> return Fn.id; string "lose" *> return Int.neg ]
   in
-  let line =
-    let open Angstrom in
-    let+ who = word <* string " would "
-    and+ sign = sign <* string " "
-    and+ n = number <* string " happiness units by sitting next to "
-    and+ neighbour = word <* string "." in
-    (who, neighbour, sign n)
-  in
-  Angstrom.parse_string ~consume:All line s |> Result.ok_or_failwith
+  parse_using
+  @@
+  let open Angstrom in
+  let+ who = word <* string " would "
+  and+ sign = sign <* string " "
+  and+ n = number <* string " happiness units by sitting next to "
+  and+ neighbour = word <* string "." in
+  (who, neighbour, sign n)
 
 let edges l =
   let wrapped = List.last_exn l :: l in
