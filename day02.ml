@@ -14,11 +14,8 @@ let%expect_test "result" =
   test "1x1x10";
   [%expect {| 43 |}]
 
-let%expect_test "part 1" =
-  String.split_lines Day02_input.data
-  |> List.map ~f:(fun s -> result (parse s))
-  |> sum |> printf "%d";
-  [%expect {| 1598415 |}]
+let f1 data =
+  String.split_lines data |> List.map ~f:(fun s -> result (parse s)) |> sum
 
 let result2 (l, w, h) =
   let sides = [ (2 * l) + (2 * w); (2 * w) + (2 * h); (2 * l) + (2 * h) ] in
@@ -32,8 +29,7 @@ let%expect_test "result2" =
   test "1x1x10";
   [%expect {| 14 |}]
 
-let%expect_test "part 2" =
-  String.split_lines Day02_input.data
-  |> List.map ~f:(fun s -> result2 (parse s))
-  |> sum |> printf "%d";
-  [%expect {| 3812909 |}]
+let f2 data =
+  String.split_lines data |> List.map ~f:(fun s -> result2 (parse s)) |> sum
+
+let run () = Run.run ~name:"day02" ~f1 ~f2 Day02_input.data

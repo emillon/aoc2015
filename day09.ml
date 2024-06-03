@@ -37,10 +37,6 @@ let best_by s ~f =
   Set.to_list cities |> permutations |> List.map ~f:eval |> f
   |> Option.value_exn
 
-let%expect_test "part 1" =
-  best_by Day09_input.data ~f:(List.min_elt ~compare:Int.compare) |> printf "%d";
-  [%expect {| 117 |}]
-
-let%expect_test "part 2" =
-  best_by Day09_input.data ~f:(List.max_elt ~compare:Int.compare) |> printf "%d";
-  [%expect {| 909 |}]
+let f1 s = best_by s ~f:(List.min_elt ~compare:Int.compare)
+let f2 s = best_by s ~f:(List.max_elt ~compare:Int.compare)
+let run () = Run.run ~name:"day09" ~f1 ~f2 Day09_input.data

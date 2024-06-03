@@ -66,10 +66,6 @@ let%expect_test "f1" =
   f1 sample |> printf "%d";
   [%expect {| 330 |}]
 
-let%expect_test _ =
-  printf "%d" (f1 Day13_input.data);
-  [%expect {| 709 |}]
-
 let add_self (map, people) =
   let me = "@" in
   let new_map =
@@ -82,7 +78,4 @@ let add_self (map, people) =
   (new_map, new_people)
 
 let f2 s = build_problem s |> add_self |> solve_problem
-
-let%expect_test _ =
-  printf "%d" (f2 Day13_input.data);
-  [%expect {| 668 |}]
+let run () = Run.run ~name:"day13" ~f1 ~f2 Day13_input.data

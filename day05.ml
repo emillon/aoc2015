@@ -58,10 +58,6 @@ let%expect_test "is_nice2" =
   test "ieodomkazucvgmuy";
   [%expect {| false |}]
 
-let%expect_test "part 1" =
-  String.split_lines Day05_input.data |> List.count ~f:is_nice |> printf "%d";
-  [%expect {| 255 |}]
-
-let%expect_test "part 2" =
-  String.split_lines Day05_input.data |> List.count ~f:is_nice2 |> printf "%d";
-  [%expect {| 55 |}]
+let f1 s = String.split_lines s |> List.count ~f:is_nice
+let f2 s = String.split_lines s |> List.count ~f:is_nice2
+let run () = Run.run ~name:"day05" ~f1 ~f2 Day05_input.data

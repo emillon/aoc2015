@@ -55,13 +55,10 @@ let interpret s (op, a, b) =
           if Hash_set.mem s pos then Hash_set.remove s pos
           else Hash_set.add s pos)
 
-let%expect_test "part 1" =
+let f1 s =
   let set = Hash_set.create (module Int) in
-  String.split_lines Day06_input.data
-  |> List.map ~f:parse
-  |> List.iter ~f:(interpret set);
-  Hash_set.length set |> printf "%d";
-  [%expect {| 377891 |}]
+  String.split_lines s |> List.map ~f:parse |> List.iter ~f:(interpret set);
+  Hash_set.length set
 
 let interpret2 t (op, a, b) =
   iter_rectangle a b ~f:(fun pos ->
@@ -72,10 +69,9 @@ let interpret2 t (op, a, b) =
           | Turn_off -> Int.max 0 (n - 1)
           | Toggle -> n + 2))
 
-let%expect_test "part 1" =
+let f2 s =
   let t = Hashtbl.create (module Int) in
-  String.split_lines Day06_input.data
-  |> List.map ~f:parse
-  |> List.iter ~f:(interpret2 t);
-  Hashtbl.fold t ~init:0 ~f:(fun ~key:_ ~data n -> data + n) |> printf "%d";
-  [%expect {| 14110788 |}]
+  String.split_lines s |> List.map ~f:parse |> List.iter ~f:(interpret2 t);
+  Hashtbl.fold t ~init:0 ~f:(fun ~key:_ ~data n -> data + n)
+
+let run () = Run.run ~name:"day06" ~f1 ~f2 Day06_input.data

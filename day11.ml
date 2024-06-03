@@ -64,16 +64,10 @@ let%expect_test "next" =
   test "ghijklmn";
   [%expect {| ghjaabcc |}]
 
-let data = "vzbxkghb"
-
-let%expect_test "part 1" =
-  print_endline (next data);
-  [%expect {| vzbxxyzz |}]
+let f1 = next
 
 let f2 s =
   let p1 = next s in
   iter (fun s -> ok s && not (String.equal s p1)) p1
 
-let%expect_test "part 2" =
-  f2 data |> print_endline;
-  [%expect {| vzcaabcc |}]
+let run () = Run.run_string ~name:"day11" ~f1 ~f2 "vzbxkghb"

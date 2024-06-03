@@ -19,12 +19,6 @@ let f_gen n s =
   |> Fn.apply_n_times ~n look_and_say
   |> List.length
 
-let data = "3113322113"
-
-let%expect_test "part 1" =
-  printf "%d" (f_gen 40 data);
-  [%expect {| 329356 |}]
-
-let%expect_test "part 2" =
-  printf "%d" (f_gen 50 data);
-  [%expect {| 4666278 |}]
+let f1 = f_gen 40
+let f2 = f_gen 50
+let run () = Run.run ~name:"day10" ~f1 ~f2 "3113322113"
