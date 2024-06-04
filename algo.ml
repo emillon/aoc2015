@@ -19,6 +19,14 @@ let%expect_test "permutations" =
      (2 4 1 3) (2 4 3 1) (1 4 2 3) (4 1 2 3) (4 2 1 3) (4 2 3 1) (1 4 3 2)
      (4 1 3 2) (4 3 1 2) (4 3 2 1)) |}]
 
+let rec sublists = function
+  | [] -> [ [] ]
+  | x :: xs -> List.concat_map (sublists xs) ~f:(fun l -> [ l; List.cons x l ])
+
+let%expect_test "sublists" =
+  sublists [ 'a'; 'b'; 'c' ] |> [%sexp_of: char list list] |> print_s;
+  [%expect {| (() (a) (b) (a b) (c) (a c) (b c) (a b c)) |}]
+
 let rec legs_after x = function a :: l -> (x, a) :: legs_after a l | [] -> []
 let legs = function [] -> assert false | x :: xs -> legs_after x xs
 
