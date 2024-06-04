@@ -11,3 +11,15 @@ let shift (x, y) (d : Dir.t) =
   | S -> (x, y + 1)
   | E -> (x + 1, y)
   | W -> (x - 1, y)
+
+let neighbours8 (x, y) =
+  [
+    (x - 1, y - 1);
+    (x, y - 1);
+    (x + 1, y - 1);
+    (x - 1, y);
+    (x + 1, y);
+    (x - 1, y + 1);
+    (x, y + 1);
+    (x + 1, y + 1);
+  ]
