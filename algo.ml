@@ -1,4 +1,5 @@
 let sum = List.fold ~init:0 ~f:( + )
+let product = List.fold ~init:1 ~f:( * )
 
 let rec insert x l =
   match l with
