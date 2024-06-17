@@ -9,7 +9,7 @@ module Encode = struct
 
   let term =
     let open Cmdliner.Term.Syntax in
-    let+ input_file = input_file in
+    let+ input_file in
     let data = In_channel.read_all input_file in
     printf "%s\n" (Hex_encode.to_hex data)
 
@@ -21,7 +21,7 @@ module Decode = struct
 
   let term =
     let open Cmdliner.Term.Syntax in
-    let+ input_file = input_file in
+    let+ input_file in
     let data = In_channel.read_all input_file |> String.trim in
     printf "let data = {|%s|}\n" (Hex_encode.from_hex data)
 

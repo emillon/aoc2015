@@ -18,7 +18,7 @@ let ingredient_score { capacity; durability; flavor; texture; calories = _ } =
 let parse_line =
   let signed_number =
     let open Angstrom in
-    let+ minus = option false (char '-' *> return true) and+ number = number in
+    let+ minus = option false (char '-' *> return true) and+ number in
     if minus then -number else number
   in
   parse_using

@@ -42,7 +42,7 @@ let parse_line =
     let open Angstrom in
     choice
       [
-        (let+ a = atom and+ op = op and+ b = atom in
+        (let+ a = atom and+ op and+ b = atom in
          Op (op, a, b));
         (let+ a = string "NOT " *> atom in
          Not a);
