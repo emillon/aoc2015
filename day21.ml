@@ -1,3 +1,4 @@
+open Algo
 open Parsing_util
 
 type creature = { hp : int; damage : int; armor : int }
@@ -26,7 +27,6 @@ type item = { cost : int; bonus_damage : int; bonus_armor : int }
 [@@deriving equal, sexp]
 
 let optional l = [] :: List.map ~f:List.return l
-let guard = function true -> [ () ] | false -> []
 
 let upto2 l =
   let l0 = [] in

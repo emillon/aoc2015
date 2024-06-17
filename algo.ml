@@ -74,3 +74,5 @@ let%expect_test "iter_bytes" =
     11
     12
     result: 12 |}]
+
+let guard = function true -> [ () ] | false -> []
